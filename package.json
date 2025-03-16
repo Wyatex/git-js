@@ -1,0 +1,56 @@
+{
+  "name": "@wyatex/git-js",
+  "type": "module",
+  "version": "0.0.1",
+  "packageManager": "pnpm@10.6.1",
+  "description": "Implement git using js",
+  "license": "MIT",
+  "repository": "wyatex/git-js",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "bin": {
+    "git-js": "./dist/index.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "dev": "vitest dev",
+    "lint": "eslint .",
+    "lint:fix": "automd && eslint . --fix",
+    "prepack": "pnpm build",
+    "release": "pnpm test && changelogen --release && npm publish && git push --follow-tags",
+    "test": "pnpm lint && pnpm test:types && vitest run --coverage",
+    "test:types": "tsc --noEmit --skipLibCheck"
+  },
+  "dependencies": {
+    "@antfu/eslint-config": "^4.10.1",
+    "citty": "^0.1.6",
+    "globby": "^14.1.0",
+    "zstd-napi": "^0.0.10"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "@vitest/coverage-v8": "^3.0.8",
+    "automd": "^0.4.0",
+    "changelogen": "^0.6.1",
+    "eslint": "^9.22.0",
+    "eslint-config-unjs": "^0.4.2",
+    "eslint-plugin-format": "^1.0.1",
+    "jiti": "^2.4.2",
+    "typescript": "^5.8.2",
+    "unbuild": "^3.5.0",
+    "vitest": "^3.0.8"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "zstd-napi"
+    ]
+  }
+}
