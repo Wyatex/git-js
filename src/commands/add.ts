@@ -1,10 +1,10 @@
 import { Buffer } from 'node:buffer'
-import { createHash } from 'node:crypto'
 import fs from 'node:fs'
 import process from 'node:process'
 import { defineCommand } from 'citty'
 import { globby } from 'globby'
 import { compress } from 'zstd-napi'
+import getSHA1 from '../utils/get-sha1.ts'
 
 export default defineCommand({
   meta: {
@@ -79,7 +79,3 @@ export default defineCommand({
     console.log('Blob write succeeded')
   },
 })
-
-function getSHA1(content: string) {
-  return createHash('sha1').update(content, 'utf8').digest('hex')
-}
